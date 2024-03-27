@@ -1,7 +1,7 @@
+import { prisma } from '@/src/lib/prisma'
 import dayjs from 'dayjs'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { z } from 'zod'
-import { prisma } from '../../../../lib/prisma'
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,7 +13,7 @@ export default async function handler(
 
   const username = String(req.query.username)
 
-  const user = await prisma.user.findFirst({
+  const user = await prisma.user.findUnique({
     where: {
       username,
     },
