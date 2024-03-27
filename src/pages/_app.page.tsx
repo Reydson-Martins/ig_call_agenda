@@ -5,6 +5,7 @@ import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import { queryClient } from '../lib/react-query'
 import { Toaster } from 'sonner'
+import { DefaultSeo } from 'next-seo'
 globalStyles()
 
 export default function App({
@@ -14,6 +15,14 @@ export default function App({
   return (
     <QueryClientProvider client={queryClient}>
       <SessionProvider session={session}>
+        <DefaultSeo
+          openGraph={{
+            type: 'website',
+            locale: 'pt_BR',
+            url: 'https://www.',
+            siteName: 'Ignite Call',
+          }}
+        />
         <Toaster richColors duration={3000} position="top-right" />
         <Component {...pageProps} />
       </SessionProvider>
